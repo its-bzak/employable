@@ -1,0 +1,65 @@
+
+#.gitignore housing both current and future additions to the application (based on current planned stack)
+
+# ==========================
+# Python / Django
+# ==========================
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.DS_Store
+
+# Virtual environments
+venv/
+.env/
+env/
+*.env
+
+# Django specific
+/media/
+staticfiles/
+*.mo
+*.pot
+
+# ==========================
+# Node / React
+# ==========================
+# Dependencies
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================
+# OS & IDE
+# ==========================
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# JetBrains / VSCode
+.idea/
+.vscode/
+
+# ==========================
+# AWS / Credentials
+# ==========================
+.aws/
+*.pem
+*.key
+*.crt
+*.cer

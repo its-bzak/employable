@@ -50,6 +50,9 @@ class Education(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.user_profile.user.username} - {self.school_name}"
+
 class WorkExperience(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=255)
@@ -57,3 +60,6 @@ class WorkExperience(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.user_profile.user.username} - {self.job_title}"

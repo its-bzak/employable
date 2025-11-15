@@ -41,7 +41,7 @@ class Application(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(JobPosting, on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPosting, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=STATUS_OPTIONS, default='pending')
     date_applied = models.DateTimeField(auto_now_add=True)
 

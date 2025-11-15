@@ -6,6 +6,19 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('__all__')
 
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'password')
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            validated_data['username'],
+            validated_data['password'],
+        )
+        return user
+
 class CompanyProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompanyProfile

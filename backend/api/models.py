@@ -13,10 +13,11 @@ class UserProfile(models.Model):
         return self.user.username
 
 class CompanyProfile(models.Model):
-    company_name = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    company_name = models.CharField(max_length=255)
     location = models.CharField(max_length=255, blank=True)
     website = models.URLField(blank=True)
-    industry = models.CharField(blank=True)
+    industry = models.CharField(max_length=255, blank=True)
     is_company_profile = True
 
     def __str__(self):
@@ -42,7 +43,7 @@ class Application(models.Model):
         ('rejected', 'Rejected')
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     job = models.ForeignKey(JobPosting, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=STATUS_OPTIONS, default='pending')
     date_applied = models.DateTimeField(auto_now_add=True)

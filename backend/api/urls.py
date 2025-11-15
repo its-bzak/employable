@@ -13,7 +13,7 @@ router = DefaultRouter()
 router.register(r'userprofiles', UserProfileViewSet)
 router.register(r'companyprofiles', CompanyProfileViewSet)
 router.register(r'applications', ApplicationViewSet)
-router.register(r'jon', JobViewSet)
+router.register(r'jobpostings', JobViewSet)
 router.register(r'education', EducationViewSet)
 router.register(r'workexperience', WorkExperienceViewSet)
 

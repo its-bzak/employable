@@ -4,4 +4,13 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.id == request.user.id
+        if hasattr(obj, 'user'):
+            return obj.user == request.user
+        if hasattr(obj, 'company_name'):
+            return obj.company_name == request.user
+        if hasattr(obj, 'company'):
+            return obj.company.company_name == request.user
+        if hasattr(obj, 'user_profile'):
+            return obj.user_profile.user == request.user
+
+        return False

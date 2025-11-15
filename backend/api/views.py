@@ -3,6 +3,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 from .models import UserProfile, CompanyProfile, Application, Education, WorkExperience, JobPosting
 from .serializers import (
     UserProfileSerializer,
@@ -17,7 +18,7 @@ from .serializers import (
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -31,12 +32,12 @@ class RegisterView(APIView):
 class CompanyProfileViewSet(viewsets.ModelViewSet):
     queryset = CompanyProfile.objects.all()
     serializer_class = CompanyProfileSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 class JobViewSet(viewsets.ModelViewSet):
     queryset = JobPosting.objects.all()
     serializer_class = JobPostingSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
 class ApplicationViewSet(viewsets.ModelViewSet):
     queryset = Application.objects.all()

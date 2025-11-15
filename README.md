@@ -7,7 +7,7 @@ as myself.
 *The days of creating dozens of accounts under a handful of different emails are over. The all-in-one application handler and job search platform is here... (almost).*
 
 ## **Tech Stack**: 
-*Frontend*: React Native \
+*Frontend*: React \
 *Backend*: Django REST Framework \
 *Database*: PosgreSQL \
 *Hosting*: Amazon AWS  

@@ -15,11 +15,21 @@ class CompanyProfile(models.Model):
     company_name = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=255, blank=True)
     website = models.URLField(blank=True)
-    industry = models.URLField(blank=True)
+    industry = models.CharField(blank=True)
 
     def __str__(self):
         return self.company_name.username
 
+class JobPosting(models.Model):
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE)
+    position_title = models.CharField(max_length=255)
+    position_description = models.TextField()
+    min_salary = models.IntegerField(null=True, blank=True)
+    max_salary = models.IntegerField(null=True, blank=True)
+    date_posted = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.company.company_name} - {self.position_title}"
 
 
 class Application(models.Model):
@@ -31,16 +41,12 @@ class Application(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE)
-    position_title = models.CharField(max_length=255)
-    position_description = models.CharField(max_length=1000)
-    min_salary = models.IntegerField(blank=True, null=True)
-    max_salary = models.IntegerField(blank=True, null=True)
+    job = models.ForeignKey(JobPosting, on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_OPTIONS, default='pending')
     date_applied = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.position_title}"
+        return f"{self.user.username} - {self.job.position_title}"
 
 class Education(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

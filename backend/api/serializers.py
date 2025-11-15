@@ -11,6 +11,11 @@ class CompanyProfileSerializer(serializers.ModelSerializer):
         model = CompanyProfile
         fields = ('__all__')
 
+class JobPostingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobPosting
+        fields = ('__all__')
+
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application

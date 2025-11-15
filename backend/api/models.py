@@ -7,6 +7,7 @@ class UserProfile(models.Model):
     phone_number = models.CharField(max_length=20, blank=True)
     extra_url = models.URLField(blank=True)
     resume = models.FileField(upload_to='resumes/', blank=True)
+    is_user_profile = True
 
     def __str__(self):
         return self.user.username
@@ -16,6 +17,7 @@ class CompanyProfile(models.Model):
     location = models.CharField(max_length=255, blank=True)
     website = models.URLField(blank=True)
     industry = models.CharField(blank=True)
+    is_company_profile = True
 
     def __str__(self):
         return self.company_name.username

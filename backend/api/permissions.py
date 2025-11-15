@@ -14,3 +14,11 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return obj.user_profile.user == request.user
 
         return False
+
+class IsCompanyProfile(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and getattr(request.user, 'is_company_profile', None)
+
+class IsUserProfile(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and getattr(request.user, 'is_user_profile', None)

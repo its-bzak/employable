@@ -18,34 +18,27 @@ from .serializers import (
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 class RegisterView(generics.CreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = RegisterSerializer
-    permission_classes = [AllowAny]
 
 class CompanyProfileViewSet(viewsets.ModelViewSet):
     queryset = CompanyProfile.objects.all()
     serializer_class = CompanyProfileSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 class JobViewSet(viewsets.ModelViewSet):
     queryset = JobPosting.objects.all()
     serializer_class = JobPostingSerializer
-    permission_classes = [IsCompanyProfile, IsOwnerOrReadOnly]
 
 class ApplicationViewSet(viewsets.ModelViewSet):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
-    permission_classes = [IsUserProfile, IsOwnerOrReadOnly]
 
 class EducationViewSet(viewsets.ModelViewSet):
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 class WorkExperienceViewSet(viewsets.ModelViewSet):
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
